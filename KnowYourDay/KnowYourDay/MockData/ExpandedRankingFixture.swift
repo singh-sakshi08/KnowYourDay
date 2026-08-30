@@ -206,6 +206,17 @@ enum ExpandedRankingFixture {
     )
 }
 
+struct ExpandedRankingProvider: RankingProviding {
+
+    func rankings(for city: SearchedCity) async throws -> [DayRanking] {
+        RankingSerivce().getRanking(
+            forecastResponse: ExpandedRankingFixture.forecast,
+            marineResponse: ExpandedRankingFixture.marine
+        )
+    }
+}
+
+
 /*
  Usage:
 
