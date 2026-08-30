@@ -85,3 +85,37 @@ struct GeocodingResult: Codable, Identifiable {
             .joined(separator: ", ")
     }
 }
+
+//MARK: OpenMeteoServiceError
+
+enum OpenMeteoServiceError: Error {
+    case invalidURL
+}
+
+// MARK: - Fetching
+
+extension OpenMeteoAPI {
+    /// Searches for places by name. Returns an empty array (not an error)
+    /// when there are no matches.
+    static func searchLocations(
+        name: String,
+        count: Int = 10,
+        language: String = "en"
+    ) async throws -> [GeocodingResult] {
+        guard name.count >= 2 else { return [] } // API requires >=2 chars
+
+        var components = URLComponents(string: "https://geocoding-api.open-meteo.com/v1/search")!
+        components.queryItems = [
+            URLQueryItem(name: "name", value: name),
+            URLQueryItem(name: "count", value: "\(count)"),
+            URLQueryItem(name: "language", value: language),
+            URLQueryItem(name: "format", value: "json")
+        ]
+
+        guard let url = components.url else { throw OpenMeteoServiceError.invalidURL }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decoded = try JSONDecoder().decode(GeocodingResponse.self, from: data)
+        return decoded.results ?? []
+    }
+}
+

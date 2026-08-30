@@ -25,7 +25,7 @@ struct CitySearchView: View {
         NavigationStack(path: $path) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    if !viewModel.searchText.trimmingCharacters(in: .whitespaces).isEmpty {
+                    if viewModel.hasSearched {
                         searchResultsSection
                     } else {
                         historySection
@@ -35,6 +35,7 @@ struct CitySearchView: View {
             }
             .navigationTitle("Know Your Day")
             .searchable(text: $viewModel.searchText, prompt: "Search for a city")
+            .onSubmit(of: .search) { viewModel.performSearch() }
             .navigationDestination(for: Int.self) { cityId in
                 CityDetailLoaderView(cityId: cityId, rankingProvider: rankingProvider)
             }
@@ -94,8 +95,12 @@ struct CitySearchView: View {
 
     private func select(_ result: GeocodingResult) {
         let repository = SwiftDataCityHistoryRepository(modelContext: modelContext)
-        if let city = try? repository.recordSearch(result) {
+        do {
+            let city = try repository.recordSearch(result)
             path.append(city.id)
+        } catch {
+            // TEMP DIAGNOSTIC — remove once the root cause is found.
+            print("⚠️ recordSearch failed for \(result.name): \(error)")
         }
         viewModel.clearSearch()
     }

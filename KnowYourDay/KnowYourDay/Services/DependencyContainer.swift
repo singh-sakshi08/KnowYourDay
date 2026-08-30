@@ -12,8 +12,8 @@ struct DependencyContainer {
     let rankingProvider: RankingProviding
 
     init(
-        locationSearchService: LocationSearchingProtocol = MockLocationSearchService(),
-        rankingProvider: RankingProviding = ExpandedRankingProvider()
+        locationSearchService: LocationSearchingProtocol = OpenMeteoLocationSearchService(),
+        rankingProvider: RankingProviding = OpenMeteoRankingProvider()
     ) {
         self.locationSearchService = locationSearchService
         self.rankingProvider = rankingProvider
