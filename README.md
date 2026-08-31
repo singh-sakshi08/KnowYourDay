@@ -14,7 +14,7 @@ Use Open-Meteo for weather data:
 How you determine suitability, structure the application, manage state, and present
 information is part of the problem. No backend is required
 
-##Solution
+## Solution
 
 ## Feature List
         - Search for a city
