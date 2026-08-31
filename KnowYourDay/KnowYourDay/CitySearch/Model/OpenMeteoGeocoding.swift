@@ -104,7 +104,7 @@ extension OpenMeteoAPI {
     ) async throws -> [GeocodingResult] {
         guard name.count >= 2 else { return [] } // API requires >=2 chars
 
-        var components = URLComponents(string: "https://geocoding-api.open-meteo.com/v1/search")!
+        guard var components = URLComponents(string: "https://geocoding-api.open-meteo.com/v1/search") else {throw OpenMeteoServiceError.invalidURL}
         components.queryItems = [
             URLQueryItem(name: "name", value: name),
             URLQueryItem(name: "count", value: "\(count)"),

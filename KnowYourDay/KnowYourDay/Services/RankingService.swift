@@ -12,7 +12,7 @@ class RankingSerivce {
     private let nonzeroTiePriority = ["Skiing", "Surfing", "Outdoor", "Indoor"]
     
     // Priority order for zero ties (Safety order: Rank 1 -> Rank 4)
-    private let zeroTiePriority = ["Indoor", "Outdoor", "Skiing", "Surfing"]
+    private let zeroTiePriority = ["Indoor", "Outdoor", "Surfing", "Skiing"]
     
     func getRanking(forecastResponse: ForecastAPIResponse, marineResponse: OpenMeteoMarineResponse) -> [DayRanking] {
         let days = forecastResponse.daily.asDays(hourly: forecastResponse.hourly)
@@ -31,15 +31,7 @@ class RankingSerivce {
                               ScoredActivities(name: "Surfing", score:surfingScore),
                               ScoredActivities(name: "Skiing", score: skiingScore)
                             ]
-            
-              let finalRanking = rankActivities(activities)
-                print("""
-            \(day.date)
-            Outdoor: \(outdoorScore)
-            Skiing: \(skiingScore)
-            Surfing: \(surfingScore)
-            Indoor: \(indoorScore)
-            """)
+            let finalRanking = rankActivities(activities)
             allRakings.append(DayRanking(date: day.date, ranking: finalRanking))
         }
         
@@ -75,10 +67,8 @@ class RankingSerivce {
         let snowDepth = day.snowDepthCm // cm; nil = no hourly snow_depth data for this day/location
 
         // Hard disqualifiers — any one zeroes the whole day
-        if tempMax > 5 || tempMin < -20 ||
-           wind > 60 ||
-           [95, 96, 99].contains(code) ||
-            (snowDepth.map { $0 < 1.0 } ?? true) { // < 0.01 m — "effectively no snow on the ground"
+        if tempMax > 5 || tempMin < -20 || wind > 60 ||  [95, 96, 99].contains(code) ||
+(snowDepth.map { $0 < 1.0 } ?? true) { // < 0.01 m — "effectively no snow on the ground"
             return 0.0
         }
 
@@ -145,7 +135,6 @@ class RankingSerivce {
             }
 
         let wind = max(day.windspeedMax, day.windgustsMax ?? day.windspeedMax)
-
             if waveHeight < 0.3 || waveHeight > 4.0 || wind > 50 {
                 return 0.0
             }
@@ -189,10 +178,7 @@ class RankingSerivce {
         let precip = day.precipitationSum ?? 0.0
 
         // Hard disqualifiers
-        if precip > 10.0 ||
-           [95, 96, 99].contains(code) ||
-           tempMax > 38 || tempMin < 0 ||
-           wind > 50 {
+        if precip > 10.0 || [95, 96, 99].contains(code) || tempMax > 38 || tempMin < 0 || wind > 50 {
             return 0.0
         }
 
@@ -240,42 +226,10 @@ class RankingSerivce {
     }
 }
 
-
-
-
-
 struct ScoredActivities {
     var name: String
     var score: Double
 }
-
-//extension ScoredActivities: Comparable {
-//    /// Tie-break priority for the three weather-driven activities. There isn't
-//    /// one fixed order — it flips depending on whether the tied score is 0
-//    /// (a fully disqualified day, where the safe/generic option edges out the
-//    /// specialized sports) or non-zero (where the specialized sports are
-//    /// prioritized over generic outdoor sightseeing). Listed worst → best,
-//    /// matching how `<` is used below.
-//    private static func weatherPriority(name: String, score: Double) -> Int? {
-//        let order = score == 0.0
-//            ? ["Outdoor","Surfing", "Skiing" ]   // disqualified day: Outdoor edges out both sports
-//            : ["Surfing", "Skiing", "Outdoor"]   // usable day: Surfing edges out Skiing edges out Outdoor
-//        return order.firstIndex(of: name)
-//    }
-//
-//    static func < (lhs: ScoredActivities, rhs: ScoredActivities) -> Bool {
-//        if lhs.score == rhs.score {
-//            if let l = weatherPriority(name: lhs.name, score: lhs.score),
-//               let r = weatherPriority(name: rhs.name, score: rhs.score) {
-//                return l < r
-//            }
-//            // Indoor, or any name that lands here by coincidence — same
-//            // alphabetical fallback the original code already had.
-//            return lhs.name < rhs.name
-//        }
-//        return lhs.score < rhs.score
-//    }
-//}
 
 enum SuitabilityTier: Double {
     case disqualifying = 0.0

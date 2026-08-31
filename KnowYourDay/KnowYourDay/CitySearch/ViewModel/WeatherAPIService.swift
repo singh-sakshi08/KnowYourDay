@@ -8,7 +8,7 @@ import Foundation
 
 enum OpenMeteoAPI {
     static func fetchForecast(latitude: Double, longitude: Double) async throws -> ForecastAPIResponse {
-        var components = URLComponents(string: "https://api.open-meteo.com/v1/forecast")!
+        guard var components = URLComponents(string: "https://api.open-meteo.com/v1/forecast") else {throw OpenMeteoServiceError.invalidURL}
         components.queryItems = [
             URLQueryItem(name: "latitude", value: "\(latitude)"),
             URLQueryItem(name: "longitude", value: "\(longitude)"),
@@ -33,7 +33,7 @@ enum OpenMeteoAPI {
     
     
     static func fetchMarine(latitude: Double, longitude: Double) async throws -> OpenMeteoMarineResponse {
-        var components = URLComponents(string: "https://marine-api.open-meteo.com/v1/marine")!
+        guard var components = URLComponents(string: "https://marine-api.open-meteo.com/v1/marine") else {throw OpenMeteoServiceError.invalidURL}
         components.queryItems = [
             URLQueryItem(name: "latitude", value: "\(latitude)"),
             URLQueryItem(name: "longitude", value: "\(longitude)"),
