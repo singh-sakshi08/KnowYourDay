@@ -8,11 +8,12 @@ import SwiftUI
 import SwiftData
 
 struct CitySearchView: View {
+    //Fetching data from persisted data
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \SearchedCity.lastSearchedAt, order: .reverse) private var history: [SearchedCity]
 
     @State private var viewModel: CitySearchViewModel
-    @State private var path: [Int] = []
+    @State private var path: [Int] = [] //fetching city details based on Id
 
     private let rankingProvider: RankingProviding
 
@@ -53,13 +54,13 @@ struct CitySearchView: View {
                 .foregroundStyle(.secondary)
         } else {
             VStack(spacing: 12) {
-                ForEach(viewModel.searchResults) { result in
+                ForEach(viewModel.searchResults) { cityData in
                     Button {
-                        select(result)
+                        select(cityData)
                     } label: {
                         CityHistoryCard(
-                            name: result.name,
-                            subtitle: [result.admin1, result.country].compactMap { $0 }.joined(separator: ", ")
+                            name: cityData.name,
+                            subtitle: [cityData.admin1, cityData.country].compactMap { $0 }.joined(separator: ", ")
                         )
                     }
                     .buttonStyle(.plain)
@@ -84,7 +85,7 @@ struct CitySearchView: View {
                         subtitle: [city.admin1, city.country].compactMap { $0 }.joined(separator: ", "),
                         onDelete: { removeFromHistory(city) }
                     )
-                    // Plain tap gesture (not a Button) so it doesn't swallow
+                    // Plain tap gesture so it doesn't swallow
                     // taps meant for the nested delete Button above.
                     .contentShape(Rectangle())
                     .onTapGesture { path.append(city.id) }
@@ -93,14 +94,15 @@ struct CitySearchView: View {
         }
     }
 
+    //Persisted data operations
     private func select(_ result: GeocodingResult) {
         let repository = SwiftDataCityHistoryRepository(modelContext: modelContext)
         do {
             let city = try repository.recordSearch(result)
             path.append(city.id)
         } catch {
-            // TEMP DIAGNOSTIC — remove once the root cause is found.
-            print("⚠️ recordSearch failed for \(result.name): \(error)")
+
+            print("recordSearch failed for \(result.name): \(error)")
         }
         viewModel.clearSearch()
     }

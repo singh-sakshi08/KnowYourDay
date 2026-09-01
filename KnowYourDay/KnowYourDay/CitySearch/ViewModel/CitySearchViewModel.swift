@@ -21,7 +21,7 @@ final class CitySearchViewModel {
     }
     private(set) var searchResults: [GeocodingResult] = []
     private(set) var isSearching = false
-    /// True once the user has submitted a search — distinguishes "typing,
+    /// True once the user has submitted a search: distinguishes "typing,
     /// not yet searched" (still shows history) from "searched, no matches".
     private(set) var hasSearched = false
 
@@ -32,8 +32,7 @@ final class CitySearchViewModel {
         self.locationSearchService = locationSearchService
     }
 
-    /// Called from `.onSubmit(of: .search)` — the only place a network
-    /// call is triggered.
+    /// Called when search is submitted: the only place a network call is triggered.
     func performSearch() {
         searchTask?.cancel()
         let query = searchText.trimmingCharacters(in: .whitespaces)

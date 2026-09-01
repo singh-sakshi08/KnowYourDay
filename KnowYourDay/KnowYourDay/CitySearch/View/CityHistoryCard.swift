@@ -28,7 +28,7 @@ struct CityHistoryCard: View {
             }
 
             Spacer()
-
+            //delete button to remove the previously searched cities from the list
             if let onDelete {
                 Button(role: .destructive, action: onDelete) {
                     Image(systemName: "minus.circle.fill")
@@ -37,10 +37,6 @@ struct CityHistoryCard: View {
                 }
                 .buttonStyle(.plain)
             }
-
-            Image(systemName: "chevron.right")
-                .font(.footnote)
-                .foregroundStyle(.tertiary)
         }
         .padding(16)
         .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))

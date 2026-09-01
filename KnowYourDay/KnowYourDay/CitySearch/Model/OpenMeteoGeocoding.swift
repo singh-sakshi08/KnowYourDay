@@ -95,7 +95,7 @@ enum OpenMeteoServiceError: Error {
 // MARK: - Fetching
 
 extension OpenMeteoAPI {
-    /// Searches for places by name. Returns an empty array (not an error)
+    /// Searches for places by name by triggering the GeoCodingAPI. Returns an empty array (not an error)
     /// when there are no matches.
     static func searchLocations(
         name: String,

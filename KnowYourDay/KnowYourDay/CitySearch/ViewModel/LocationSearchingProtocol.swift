@@ -11,8 +11,3 @@ protocol LocationSearchingProtocol {
     func search(query: String) async throws -> [GeocodingResult]
 }
 
-protocol CityHistoryRepository {
-    @discardableResult
-    func recordSearch(_ result: GeocodingResult) throws -> SearchedCity
-}
-

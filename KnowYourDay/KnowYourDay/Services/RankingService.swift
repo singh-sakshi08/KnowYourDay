@@ -17,7 +17,7 @@ class RankingSerivce {
     func getRanking(forecastResponse: ForecastAPIResponse, marineResponse: OpenMeteoMarineResponse) -> [DayRanking] {
         let days = forecastResponse.daily.asDays(hourly: forecastResponse.hourly)
         let marineDays = marineResponse.daily.asDays()
-        var allRakings:  [DayRanking] = []
+        var allRankings:  [DayRanking] = []
         
         for day in days {
             let marineDay = marineDays.first(where: { $0.date == day.date })
@@ -32,10 +32,10 @@ class RankingSerivce {
                               ScoredActivities(name: "Skiing", score: skiingScore)
                             ]
             let finalRanking = rankActivities(activities)
-            allRakings.append(DayRanking(date: day.date, ranking: finalRanking))
+            allRankings.append(DayRanking(date: day.date, ranking: finalRanking))
         }
         
-        return allRakings
+        return allRankings
     }
     
     // MARK: - Sorting & Tie-Breaking
@@ -73,7 +73,7 @@ class RankingSerivce {
         }
 
         var sum = 0.0
-
+        //Parameter Scoring
         // Temperature
         if tempMax >= -10 && tempMax <= -1 {
             sum += 1.0
@@ -133,14 +133,14 @@ class RankingSerivce {
                   let wavePeriod = marine.wavePeriodMax ?? marine.swellWavePeriodMax else {
                 return 0.0 // no marine data for this day/location
             }
-
+        //hard disqualifiers
         let wind = max(day.windspeedMax, day.windgustsMax ?? day.windspeedMax)
             if waveHeight < 0.3 || waveHeight > 4.0 || wind > 50 {
                 return 0.0
             }
 
             var sum = 0.0
-
+        //Parameter Scores
             if waveHeight >= 1.0 && waveHeight <= 2.0 {
                 sum += 1.0
             } else if (waveHeight >= 0.5 && waveHeight < 1.0) || (waveHeight > 2.0 && waveHeight <= 3.0) {
