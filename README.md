@@ -50,7 +50,7 @@ Testing values:
 - A landlocked city (Bengaluru): Marine API has nothing to return for this, so surfing quietly scores 0 and sits last in the ranking. This is expected behaviour, not a bug: no error is shown for it on purpose.
 - A cold/mountain city in winter (Chamonix, Zermatt): good one to sanity check skiing scores against.
 
-**Screen 2 — 7-day ranking for the city.** Top of the screen shows today's best activity, big icon and name. Below that:
+**Screen 2 : 7-day ranking for the city.** Top of the screen shows today's best activity, big icon and name. Below that:
 - Grid 1: one column per day, just the top-ranked activity for that day.
 - Grid 2: full ranking, all 4 activities per day, best to worst left to right.
 
@@ -72,7 +72,8 @@ Went with MVVM architecture, with each screen has its own View, Model and ViewMo
 All the below logic is implemented in the **RankingService.swift** file. All the activities Skiing, Surfing and Outdoor Sightseeing are scored in the same basic way.
 
 1. Hard Disqualifiers: If any activity scores hits any of the disqualifier condition from the sheet, they will be given 0 for the day.
-  2.  If the conditions vary in the range of Ideal to poor, the final score for the day on the particular activity will be average of all the bands
+2.  If the conditions vary in the range of Ideal to poor, the final score for the day on the particular activity will be average of all the bands
+3. All the units of the parameters are same as mentioned in the sheet attached with the project link
         
 **Surfing** additionally needs Marine API data (wave height + period) for
 that date. If there's no marine data at all, most probably because the city is landlocked and the Marine API has nothing to return, then surfing just scores 0 for every day without any indication.
@@ -80,8 +81,9 @@ that date. If there's no marine data at all, most probably because the city is l
 **Indoor Sightseeing is not scored against the weather at all** because of its independence from the weather. 
     It is calculated as **1-(average of other 3 activity's scores)**. Bad weather across the board pushes indoor toward 1.0, great weather pushes it toward 0.0
     
-    **Tie Breakers**:
+    **Tie Breakers** :
       There are two types of tie breakers and in both the cases I have kept a different order
+      
         Non-Zero score Ties:   ["Skiing", "Surfing", "Outdoor", "Indoor"]
         Zero score Ties: ["Indoor", "Outdoor", "Surfing", "Skiing"]
 
