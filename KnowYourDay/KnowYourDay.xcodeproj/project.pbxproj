@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		464E802A3045DEA900FA2AE4 /* PBXContainerItemProxy */ = {
+		464E7FBA3045286800FA2AE4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46A030EC3042D7A200EE304D /* Project object */;
 			proxyType = 1;
@@ -17,12 +17,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		464E80263045DEA900FA2AE4 /* KnowYourDayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnowYourDayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		464E7FB63045286800FA2AE4 /* KnowYourDayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnowYourDayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A030F43042D7A200EE304D /* KnowYourDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowYourDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		464E80273045DEA900FA2AE4 /* KnowYourDayTests */ = {
+		464E7FB73045286800FA2AE4 /* KnowYourDayTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = KnowYourDayTests;
 			sourceTree = "<group>";
@@ -35,7 +35,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		464E80233045DEA900FA2AE4 /* Frameworks */ = {
+		464E7FB33045286800FA2AE4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				46A030F63042D7A200EE304D /* KnowYourDay */,
-				464E80273045DEA900FA2AE4 /* KnowYourDayTests */,
+				464E7FB73045286800FA2AE4 /* KnowYourDayTests */,
 				46A030F53042D7A200EE304D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				46A030F43042D7A200EE304D /* KnowYourDay.app */,
-				464E80263045DEA900FA2AE4 /* KnowYourDayTests.xctest */,
+				464E7FB63045286800FA2AE4 /* KnowYourDayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,27 +73,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		464E80253045DEA900FA2AE4 /* KnowYourDayTests */ = {
+		464E7FB53045286800FA2AE4 /* KnowYourDayTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 464E802E3045DEA900FA2AE4 /* Build configuration list for PBXNativeTarget "KnowYourDayTests" */;
+			buildConfigurationList = 464E7FBC3045286800FA2AE4 /* Build configuration list for PBXNativeTarget "KnowYourDayTests" */;
 			buildPhases = (
-				464E80223045DEA900FA2AE4 /* Sources */,
-				464E80233045DEA900FA2AE4 /* Frameworks */,
-				464E80243045DEA900FA2AE4 /* Resources */,
+				464E7FB23045286800FA2AE4 /* Sources */,
+				464E7FB33045286800FA2AE4 /* Frameworks */,
+				464E7FB43045286800FA2AE4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				464E802B3045DEA900FA2AE4 /* PBXTargetDependency */,
+				464E7FBB3045286800FA2AE4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				464E80273045DEA900FA2AE4 /* KnowYourDayTests */,
+				464E7FB73045286800FA2AE4 /* KnowYourDayTests */,
 			);
 			name = KnowYourDayTests;
 			packageProductDependencies = (
 			);
 			productName = KnowYourDayTests;
-			productReference = 464E80263045DEA900FA2AE4 /* KnowYourDayTests.xctest */;
+			productReference = 464E7FB63045286800FA2AE4 /* KnowYourDayTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		46A030F33042D7A200EE304D /* KnowYourDay */ = {
@@ -128,7 +128,7 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
-					464E80253045DEA900FA2AE4 = {
+					464E7FB53045286800FA2AE4 = {
 						CreatedOnToolsVersion = 26.2;
 						TestTargetID = 46A030F33042D7A200EE304D;
 					};
@@ -152,13 +152,13 @@
 			projectRoot = "";
 			targets = (
 				46A030F33042D7A200EE304D /* KnowYourDay */,
-				464E80253045DEA900FA2AE4 /* KnowYourDayTests */,
+				464E7FB53045286800FA2AE4 /* KnowYourDayTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		464E80243045DEA900FA2AE4 /* Resources */ = {
+		464E7FB43045286800FA2AE4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -175,7 +175,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		464E80223045DEA900FA2AE4 /* Sources */ = {
+		464E7FB23045286800FA2AE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -192,15 +192,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		464E802B3045DEA900FA2AE4 /* PBXTargetDependency */ = {
+		464E7FBB3045286800FA2AE4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46A030F33042D7A200EE304D /* KnowYourDay */;
-			targetProxy = 464E802A3045DEA900FA2AE4 /* PBXContainerItemProxy */;
+			targetProxy = 464E7FBA3045286800FA2AE4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		464E802C3045DEA900FA2AE4 /* Debug */ = {
+		464E7FBD3045286800FA2AE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -220,7 +220,7 @@
 			};
 			name = Debug;
 		};
-		464E802D3045DEA900FA2AE4 /* Release */ = {
+		464E7FBE3045286800FA2AE4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -424,11 +424,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		464E802E3045DEA900FA2AE4 /* Build configuration list for PBXNativeTarget "KnowYourDayTests" */ = {
+		464E7FBC3045286800FA2AE4 /* Build configuration list for PBXNativeTarget "KnowYourDayTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				464E802C3045DEA900FA2AE4 /* Debug */,
-				464E802D3045DEA900FA2AE4 /* Release */,
+				464E7FBD3045286800FA2AE4 /* Debug */,
+				464E7FBE3045286800FA2AE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct TopActivityGrid: View {
     let rankings: [DayRanking]
+    private static let forecastDaysCount: Int = 7
 
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: 7)
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 6), count: Self.forecastDaysCount)
 
     private var visibleDays: [DayRanking] {
-        Array(rankings.prefix(7))
+        Array(rankings.prefix(Self.forecastDaysCount))
     }
 
     var body: some View {

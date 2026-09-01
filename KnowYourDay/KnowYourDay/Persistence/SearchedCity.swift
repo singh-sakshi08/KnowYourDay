@@ -57,3 +57,9 @@ extension SearchedCity {
         )
     }
 }
+
+protocol CityHistoryRepository {
+    @discardableResult
+    func recordSearch(_ result: GeocodingResult) throws -> SearchedCity
+}
+

@@ -13,7 +13,7 @@ struct CityDetailView: View {
         GeometryReader { geo in
             VStack(spacing: 0) {
                 heroSection
-                    .frame(height: geo.size.height * 0.4)
+                    .frame(height: geo.size.height * 0.4)//setting the top 40% of the screen
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
                     .padding(.top, 8)
